@@ -1,0 +1,36 @@
+package lp3a5.aula.pkg1;
+
+public class LP3A5Aula1 {
+
+    public static void main(String[] args) {
+        int contadorExterno = 0;
+        
+        MinhaThread mT1 = new MinhaThread(1);
+        mT1.start();
+        MinhaThread mT2 = new MinhaThread(2);
+        mT2.start();
+        MinhaThread mT3 = new MinhaThread(3);
+        mT3.start();
+        
+        for (int i = 0; i < 100; i = i + 1){
+            System.out.println("contador Main: " + i);
+        }
+        
+    }
+    
+}
+
+class MinhaThread extends Thread{
+    public static volatile int soma = 0;
+    int numThread = 0;
+    MinhaThread(int num) {
+        this.numThread = num;
+    }
+    public void run(){
+        for (int i = 0; i < 100; i = i + 1){
+            soma = soma + 1;
+            System.out.println("Thread: " + numThread + ". --> Soma: " + soma);
+        }
+        
+    }
+}
